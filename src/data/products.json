@@ -1,0 +1,172 @@
+[
+    {
+        "id": 1,
+        "name": "Panel Metcoppo",
+        "sku": "00001",
+        "price": 42.00,
+        "originalPrice": 32.00,
+        "description": "Panel Metcoppo de alta calidad para construcción. Ideal para techos y cubiertas industriales.",
+        "category": "Paneles",
+        "images": {
+            "main": "/img/Panel Metcoppo.png",
+            "thumbnails": [
+                "/img/Panel Metcoppo.png"
+            ]
+        },
+        "colors": [
+            {
+                "name": "Verde",
+                "value": "green-400"
+            },
+            {
+                "name": "Azul",
+                "value": "blue-400"
+            }
+        ],
+        "lengths": [
+            "2 metros",
+            "3 metros",
+            "4 metros"
+        ],
+        "thicknesses": [
+            "2mm",
+            "3mm",
+            "4mm"
+        ],
+        "rating": 5,
+        "reviews": 22,
+        "details": {
+            "material": "Acero galvanizado",
+            "espesor": "2mm",
+            "ancho": "1 metro",
+            "largo": "Variable"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Lámina Tablero",
+        "sku": "00002",
+        "price": 42.00,
+        "originalPrice": 32.00,
+        "description": "Lámina tablero resistente y duradera. Perfecta para aplicaciones estructurales.",
+        "category": "Láminas",
+        "images": {
+            "main": "/img/Lamina Tablero.png",
+            "thumbnails": [
+                "/img/Lamina Tablero.png"
+            ]
+        },
+        "colors": [
+            {
+                "name": "Gris",
+                "value": "gray-400"
+            },
+            {
+                "name": "Blanco",
+                "value": "white"
+            }
+        ],
+        "lengths": [
+            "2 metros",
+            "3 metros",
+            "4 metros"
+        ],
+        "thicknesses": [
+            "2mm",
+            "3mm",
+            "4mm"
+        ],
+        "rating": 5,
+        "reviews": 18,
+        "details": {
+            "material": "Acero galvanizado",
+            "espesor": "2mm",
+            "ancho": "1 metro",
+            "largo": "Variable"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Poliacryl",
+        "sku": "00003",
+        "price": 42.00,
+        "originalPrice": 32.00,
+        "description": "Lámina poliacryl estabilizada de 2mm de espesor. Con revestimiento de aluminio especial para proteger la lámina de la intemperie.",
+        "category": "Láminas",
+        "images": {
+            "main": "/img/lamina-principal.png",
+            "thumbnails": [
+                "/img/lamina-amarilla.png",
+                "/img/lamina-blanca.png",
+                "/img/lamina-verde.png"
+            ]
+        },
+        "colors": [
+            {
+                "name": "Amarillo",
+                "value": "yellow-400"
+            },
+            {
+                "name": "Verde",
+                "value": "green-400"
+            }
+        ],
+        "lengths": [
+            "2 metros",
+            "3 metros",
+            "4 metros"
+        ],
+        "thicknesses": [
+            "2mm",
+            "3mm",
+            "4mm"
+        ],
+        "rating": 5,
+        "reviews": 22,
+        "details": {
+            "material": "Poliacryl estabilizado",
+            "espesor": "2mm",
+            "ancho": "1 metro",
+            "largo": "Variable"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Alambre Galvanizado",
+        "sku": "00004",
+        "price": 42.00,
+        "originalPrice": 32.00,
+        "description": "Alambre galvanizado de alta resistencia. Ideal para cercas y aplicaciones de construcción.",
+        "category": "Alambres",
+        "images": {
+            "main": "/img/Alambre Galvanizado.png",
+            "thumbnails": [
+                "/img/Alambre Galvanizado.png"
+            ]
+        },
+        "colors": [
+            {
+                "name": "Gris",
+                "value": "gray-400"
+            }
+        ],
+        "lengths": [
+            "50 metros",
+            "100 metros",
+            "200 metros"
+        ],
+        "thicknesses": [
+            "1mm",
+            "2mm",
+            "3mm"
+        ],
+        "rating": 5,
+        "reviews": 15,
+        "details": {
+            "material": "Acero galvanizado",
+            "espesor": "Variable",
+            "ancho": "N/A",
+            "largo": "Variable"
+        }
+    }
+]

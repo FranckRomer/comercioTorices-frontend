@@ -1,0 +1,143 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { ProductGrid } from "../components/ProductGrid";
+import productsData from "../data/products.json";
+
+const products = productsData;
+const categories = ["Todos", "Paneles", "Láminas", "Alambres"];
+const sortOptions = [
+    { value: "name-asc", label: "Nombre A-Z" },
+    { value: "name-desc", label: "Nombre Z-A" },
+    { value: "price-asc", label: "Precio: Menor a Mayor" },
+    { value: "price-desc", label: "Precio: Mayor a Menor" },
+    { value: "rating", label: "Mejor calificados" }
+];
+---
+
+<Layout title="Tienda - Torices Digital" description="Encuentra todos los productos de construcción que necesitas en un solo lugar">
+	<!-- Main Content -->
+	<div class="container mx-auto px-4 py-8">
+		<!-- Page Header -->
+		<div class="mb-8">
+			<h1 class="text-3xl font-bold text-blue-900 mb-4">Nuestra Tienda</h1>
+			<p class="text-gray-600 text-lg">Encuentra todos los productos de construcción que necesitas en un solo lugar</p>
+		</div>
+
+		<!-- Store Stats -->
+		<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+			<div class="bg-white rounded-lg shadow-sm p-6 text-center">
+				<div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+					<i class="fas fa-box text-blue-600 text-2xl"></i>
+				</div>
+				<h3 class="text-2xl font-bold text-gray-900">{products.length}</h3>
+				<p class="text-gray-600">Productos Disponibles</p>
+			</div>
+			<div class="bg-white rounded-lg shadow-sm p-6 text-center">
+				<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+					<i class="fas fa-shipping-fast text-green-600 text-2xl"></i>
+				</div>
+				<h3 class="text-2xl font-bold text-gray-900">24-48h</h3>
+				<p class="text-gray-600">Tiempo de Entrega</p>
+			</div>
+			<div class="bg-white rounded-lg shadow-sm p-6 text-center">
+				<div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+					<i class="fas fa-star text-yellow-600 text-2xl"></i>
+				</div>
+				<h3 class="text-2xl font-bold text-gray-900">4.9/5</h3>
+				<p class="text-gray-600">Calificación Promedio</p>
+			</div>
+			<div class="bg-white rounded-lg shadow-sm p-6 text-center">
+				<div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+					<i class="fas fa-users text-purple-600 text-2xl"></i>
+				</div>
+				<h3 class="text-2xl font-bold text-gray-900">500+</h3>
+				<p class="text-gray-600">Clientes Satisfechos</p>
+			</div>
+		</div>
+
+		<!-- Filters and Search -->
+		<div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+			<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+				<!-- Search -->
+				<div class="md:col-span-2">
+					<div class="relative">
+						<input
+							type="text"
+							placeholder="Buscar productos..."
+							class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+						/>
+						<i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+					</div>
+				</div>
+				
+				<!-- Category Filter -->
+				<div>
+					<select class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+						{categories.map((category) => (
+							<option>{category}</option>
+						))}
+					</select>
+				</div>
+				
+				<!-- Sort -->
+				<div>
+					<select class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+						{sortOptions.map((option) => (
+							<option value={option.value}>{option.label}</option>
+						))}
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<!-- Products Grid -->
+		<ProductGrid products={products} showDescription={true} className="mb-8" client:load />
+
+		<!-- Store Features -->
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+			<div class="bg-white rounded-lg shadow-sm p-6 text-center">
+				<div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+					<i class="fas fa-shield-alt text-blue-600 text-2xl"></i>
+				</div>
+				<h3 class="text-lg font-semibold text-gray-900 mb-2">Garantía de Calidad</h3>
+				<p class="text-gray-600">Todos nuestros productos cuentan con garantía de calidad y certificaciones internacionales</p>
+			</div>
+			<div class="bg-white rounded-lg shadow-sm p-6 text-center">
+				<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+					<i class="fas fa-truck text-green-600 text-2xl"></i>
+				</div>
+				<h3 class="text-lg font-semibold text-gray-900 mb-2">Envío Gratis</h3>
+				<p class="text-gray-600">Envío gratuito en compras superiores a $100. Entregas rápidas y seguras</p>
+			</div>
+			<div class="bg-white rounded-lg shadow-sm p-6 text-center">
+				<div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+					<i class="fas fa-headset text-purple-600 text-2xl"></i>
+				</div>
+				<h3 class="text-lg font-semibold text-gray-900 mb-2">Soporte 24/7</h3>
+				<p class="text-gray-600">Nuestro equipo de expertos está disponible para ayudarte en cualquier momento</p>
+			</div>
+		</div>
+
+		<!-- Newsletter -->
+		<div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg p-8 text-center text-white">
+			<h3 class="text-2xl font-bold mb-4">Ofertas Exclusivas</h3>
+			<p class="text-blue-100 mb-6 max-w-2xl mx-auto">
+				Suscríbete y recibe descuentos especiales, ofertas exclusivas y las últimas novedades de nuestros productos.
+			</p>
+			<form class="max-w-md mx-auto flex gap-4">
+				<input
+					type="email"
+					placeholder="Tu correo electrónico"
+					class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
+					required
+				/>
+				<button
+					type="submit"
+					class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+				>
+					Suscribirse
+				</button>
+			</form>
+		</div>
+	</div>
+</Layout>

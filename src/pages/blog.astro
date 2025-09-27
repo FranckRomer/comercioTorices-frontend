@@ -1,0 +1,134 @@
+---
+import Layout from "../layouts/Layout.astro";
+import blogData from "../data/blog.json";
+
+const blogPosts = blogData;
+const categories = ["Todos", "Construcción", "Sostenibilidad", "Mantenimiento", "DIY", "Calidad"];
+---
+
+<Layout title="Blog - Torices Digital" description="Mantente informado con las últimas tendencias, consejos y guías sobre construcción y materiales">
+	<!-- Main Content -->
+	<div class="container mx-auto px-4 py-8">
+		<!-- Page Header -->
+		<div class="text-center mb-12">
+			<h1 class="text-4xl font-bold text-blue-900 mb-4">Blog de Construcción</h1>
+			<p class="text-xl text-gray-600 max-w-2xl mx-auto">
+				Mantente informado con las últimas tendencias, consejos y guías sobre construcción y materiales
+			</p>
+		</div>
+
+		<!-- Featured Post -->
+		<div class="mb-12">
+			{blogPosts.filter(post => post.featured).map((post) => (
+				<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+					<div class="md:flex">
+						<div class="md:w-1/2">
+							<img src={post.image} alt={post.title} class="w-full h-64 md:h-full object-cover" />
+						</div>
+						<div class="md:w-1/2 p-8">
+							<div class="flex items-center space-x-4 mb-4">
+								<span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">
+									{post.category}
+								</span>
+								<span class="text-gray-500 text-sm">
+									<i class="fas fa-clock mr-1"></i>
+									{post.readTime}
+								</span>
+							</div>
+							<h2 class="text-2xl font-bold text-gray-900 mb-4">{post.title}</h2>
+							<p class="text-gray-600 mb-6 leading-relaxed">{post.excerpt}</p>
+							<div class="flex items-center justify-between">
+								<div class="flex items-center space-x-3">
+									<div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+										<i class="fas fa-user text-blue-600"></i>
+									</div>
+									<div>
+										<p class="font-medium text-gray-900">{post.author}</p>
+										<p class="text-sm text-gray-500">{post.date}</p>
+									</div>
+								</div>
+								<a href={`/blog/${post.id}`} class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+									Leer más
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
+
+		<!-- Categories Filter -->
+		<div class="mb-8">
+			<div class="flex flex-wrap justify-center gap-2">
+				{categories.map((category) => (
+					<button class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+						category === 'Todos' 
+							? 'bg-blue-600 text-white' 
+							: 'bg-gray-200 text-gray-700 hover:bg-blue-100 hover:text-blue-600'
+					}`}>
+						{category}
+					</button>
+				))}
+			</div>
+		</div>
+
+		<!-- Blog Posts Grid -->
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+			{blogPosts.filter(post => !post.featured).map((post) => (
+				<article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
+					<div class="relative">
+						<img src={post.image} alt={post.title} class="w-full h-48 object-cover" />
+						<div class="absolute top-4 left-4">
+							<span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+								{post.category}
+							</span>
+						</div>
+					</div>
+					<div class="p-6">
+						<div class="flex items-center space-x-4 mb-3 text-sm text-gray-500">
+							<span>
+								<i class="fas fa-user mr-1"></i>
+								{post.author}
+							</span>
+							<span>
+								<i class="fas fa-calendar mr-1"></i>
+								{post.date}
+							</span>
+							<span>
+								<i class="fas fa-clock mr-1"></i>
+								{post.readTime}
+							</span>
+						</div>
+						<h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{post.title}</h3>
+						<p class="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
+						<a href={`/blog/${post.id}`} class="text-blue-600 hover:text-blue-700 font-medium">
+							Leer más <i class="fas fa-arrow-right ml-1"></i>
+						</a>
+					</div>
+				</article>
+			))}
+		</div>
+
+		<!-- Newsletter Subscription -->
+		<div class="bg-blue-600 rounded-lg p-8 text-center text-white">
+			<h3 class="text-2xl font-bold mb-4">Mantente Actualizado</h3>
+			<p class="text-blue-100 mb-6 max-w-2xl mx-auto">
+				Suscríbete a nuestro newsletter y recibe las últimas noticias, consejos y ofertas especiales directamente en tu correo.
+			</p>
+			<form class="max-w-md mx-auto flex gap-4">
+				<input
+					type="email"
+					placeholder="Tu correo electrónico"
+					class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
+					required
+				/>
+				<button
+					type="submit"
+					class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+				>
+					Suscribirse
+				</button>
+			</form>
+		</div>
+	</div>
+</Layout>

@@ -1,0 +1,291 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const contactInfo = {
+    phone: "(123) 456-7890",
+    email: "ventas@toricesdigital.com",
+    address: "Av. Principal 123, Ciudad, Estado 12345",
+    hours: "Lunes - Viernes: 8:00 AM - 6:00 PM\nSábados: 9:00 AM - 2:00 PM\nDomingos: Cerrado"
+};
+
+const teamMembers = [
+    {
+        name: "María González",
+        position: "Gerente de Ventas",
+        email: "maria@toricesdigital.com",
+        phone: "(123) 456-7891",
+        image: "/img/team-1.jpg"
+    },
+    {
+        name: "Carlos Rodríguez",
+        position: "Especialista en Productos",
+        email: "carlos@toricesdigital.com",
+        phone: "(123) 456-7892",
+        image: "/img/team-2.jpg"
+    },
+    {
+        name: "Ana Martínez",
+        position: "Atención al Cliente",
+        email: "ana@toricesdigital.com",
+        phone: "(123) 456-7893",
+        image: "/img/team-3.jpg"
+    }
+];
+
+const faqs = [
+    {
+        question: "¿Cuáles son los tiempos de entrega?",
+        answer: "Nuestros tiempos de entrega estándar son de 24-48 horas para la ciudad y 3-5 días hábiles para el resto del país. Para pedidos urgentes, contáctanos directamente."
+    },
+    {
+        question: "¿Ofrecen garantía en sus productos?",
+        answer: "Sí, todos nuestros productos cuentan con garantía de calidad. La duración de la garantía varía según el tipo de producto, desde 1 año hasta 10 años."
+    },
+    {
+        question: "¿Puedo hacer pedidos personalizados?",
+        answer: "Absolutamente. Trabajamos con pedidos personalizados según las especificaciones de tu proyecto. Contáctanos para discutir tus necesidades específicas."
+    },
+    {
+        question: "¿Qué métodos de pago aceptan?",
+        answer: "Aceptamos efectivo, transferencias bancarias, tarjetas de crédito y débito, y también trabajamos con financiamiento para proyectos grandes."
+    },
+    {
+        question: "¿Ofrecen servicios de instalación?",
+        answer: "Sí, contamos con un equipo de instaladores certificados. Los servicios de instalación tienen costo adicional y se cotizan según la complejidad del proyecto."
+    }
+];
+---
+
+<Layout title="Contacto - Torices Digital" description="Estamos aquí para ayudarte con tu proyecto de construcción. ¡No dudes en contactarnos!">
+	<!-- Main Content -->
+	<div class="container mx-auto px-4 py-8">
+		<!-- Page Header -->
+		<div class="text-center mb-12">
+			<h1 class="text-4xl font-bold text-blue-900 mb-4">Contáctanos</h1>
+			<p class="text-xl text-gray-600 max-w-2xl mx-auto">
+				Estamos aquí para ayudarte con tu proyecto de construcción. ¡No dudes en contactarnos!
+			</p>
+		</div>
+
+		<!-- Contact Info Cards -->
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+			<div class="bg-white rounded-lg shadow-sm p-6 text-center">
+				<div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+					<i class="fas fa-phone text-blue-600 text-2xl"></i>
+				</div>
+				<h3 class="text-lg font-semibold text-gray-900 mb-2">Teléfono</h3>
+				<p class="text-gray-600 mb-2">{contactInfo.phone}</p>
+				<a href={`tel:${contactInfo.phone}`} class="text-blue-600 hover:text-blue-700 font-medium">
+					Llamar ahora
+				</a>
+			</div>
+			<div class="bg-white rounded-lg shadow-sm p-6 text-center">
+				<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+					<i class="fas fa-envelope text-green-600 text-2xl"></i>
+				</div>
+				<h3 class="text-lg font-semibold text-gray-900 mb-2">Email</h3>
+				<p class="text-gray-600 mb-2">{contactInfo.email}</p>
+				<a href={`mailto:${contactInfo.email}`} class="text-blue-600 hover:text-blue-700 font-medium">
+					Enviar email
+				</a>
+			</div>
+			<div class="bg-white rounded-lg shadow-sm p-6 text-center">
+				<div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+					<i class="fas fa-map-marker-alt text-purple-600 text-2xl"></i>
+				</div>
+				<h3 class="text-lg font-semibold text-gray-900 mb-2">Dirección</h3>
+				<p class="text-gray-600 mb-2">{contactInfo.address}</p>
+				<a href="#" class="text-blue-600 hover:text-blue-700 font-medium">
+					Ver en mapa
+				</a>
+			</div>
+		</div>
+
+		<!-- Contact Form and Info -->
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+			<!-- Contact Form -->
+			<div class="bg-white rounded-lg shadow-sm p-8">
+				<h2 class="text-2xl font-bold text-gray-900 mb-6">Envíanos un mensaje</h2>
+				<form class="space-y-6">
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+						<div>
+							<label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">
+								Nombre *
+							</label>
+							<input
+								type="text"
+								id="firstName"
+								name="firstName"
+								required
+								class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+							/>
+						</div>
+						<div>
+							<label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">
+								Apellido *
+							</label>
+							<input
+								type="text"
+								id="lastName"
+								name="lastName"
+								required
+								class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+							/>
+						</div>
+					</div>
+					<div>
+						<label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+							Email *
+						</label>
+						<input
+							type="email"
+							id="email"
+							name="email"
+							required
+							class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+						/>
+					</div>
+					<div>
+						<label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+							Teléfono
+						</label>
+						<input
+							type="tel"
+							id="phone"
+							name="phone"
+							class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+						/>
+					</div>
+					<div>
+						<label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
+							Asunto *
+						</label>
+						<select
+							id="subject"
+							name="subject"
+							required
+							class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+						>
+							<option value="">Seleccionar asunto</option>
+							<option value="cotizacion">Cotización de productos</option>
+							<option value="consulta">Consulta general</option>
+							<option value="soporte">Soporte técnico</option>
+							<option value="instalacion">Servicios de instalación</option>
+							<option value="otro">Otro</option>
+						</select>
+					</div>
+					<div>
+						<label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+							Mensaje *
+						</label>
+						<textarea
+							id="message"
+							name="message"
+							rows="5"
+							required
+							class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+							placeholder="Cuéntanos sobre tu proyecto o consulta..."
+						></textarea>
+					</div>
+					<button
+						type="submit"
+						class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+					>
+						Enviar mensaje
+					</button>
+				</form>
+			</div>
+
+			<!-- Contact Info -->
+			<div class="space-y-8">
+				<!-- Business Hours -->
+				<div class="bg-white rounded-lg shadow-sm p-6">
+					<h3 class="text-xl font-bold text-gray-900 mb-4">
+						<i class="fas fa-clock text-blue-600 mr-2"></i>
+						Horarios de Atención
+					</h3>
+					<div class="space-y-2 text-gray-600">
+						{contactInfo.hours.split('\n').map((line) => (
+							<p>{line}</p>
+						))}
+					</div>
+				</div>
+
+				<!-- Map Placeholder -->
+				<div class="bg-white rounded-lg shadow-sm p-6">
+					<h3 class="text-xl font-bold text-gray-900 mb-4">
+						<i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>
+						Nuestra Ubicación
+					</h3>
+					<div class="bg-gray-200 h-48 rounded-lg flex items-center justify-center">
+						<div class="text-center text-gray-500">
+							<i class="fas fa-map text-4xl mb-2"></i>
+							<p>Mapa interactivo</p>
+							<p class="text-sm">{contactInfo.address}</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Quick Contact -->
+				<div class="bg-blue-600 rounded-lg p-6 text-white">
+					<h3 class="text-xl font-bold mb-4">¿Necesitas ayuda inmediata?</h3>
+					<p class="mb-4">Nuestro equipo de soporte está disponible para ayudarte</p>
+					<div class="space-y-2">
+						<a href={`tel:${contactInfo.phone}`} class="block bg-white text-blue-600 py-2 px-4 rounded-lg text-center font-semibold hover:bg-gray-100 transition-colors">
+							<i class="fas fa-phone mr-2"></i>
+							Llamar ahora
+						</a>
+						<a href={`mailto:${contactInfo.email}`} class="block border border-white text-white py-2 px-4 rounded-lg text-center font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+							<i class="fas fa-envelope mr-2"></i>
+							Enviar email
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Team Section -->
+		<div class="mb-12">
+			<h2 class="text-3xl font-bold text-gray-900 text-center mb-8">Nuestro Equipo</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				{teamMembers.map((member) => (
+					<div class="bg-white rounded-lg shadow-sm p-6 text-center">
+						<div class="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+							<i class="fas fa-user text-gray-400 text-3xl"></i>
+						</div>
+						<h3 class="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
+						<p class="text-blue-600 font-medium mb-4">{member.position}</p>
+						<div class="space-y-2 text-sm text-gray-600">
+							<p>
+								<i class="fas fa-envelope mr-2"></i>
+								<a href={`mailto:${member.email}`} class="hover:text-blue-600">{member.email}</a>
+							</p>
+							<p>
+								<i class="fas fa-phone mr-2"></i>
+								<a href={`tel:${member.phone}`} class="hover:text-blue-600">{member.phone}</a>
+							</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+
+		<!-- FAQ Section -->
+		<div class="bg-white rounded-lg shadow-sm p-8">
+			<h2 class="text-3xl font-bold text-gray-900 text-center mb-8">Preguntas Frecuentes</h2>
+			<div class="space-y-4">
+				{faqs.map((faq, index) => (
+					<div class="border border-gray-200 rounded-lg">
+						<button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+							<span class="font-semibold text-gray-900">{faq.question}</span>
+							<i class="fas fa-chevron-down text-gray-400"></i>
+						</button>
+						<div class="px-6 pb-4 text-gray-600">
+							<p>{faq.answer}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+</Layout>

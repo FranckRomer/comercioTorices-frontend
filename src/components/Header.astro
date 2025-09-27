@@ -1,28 +1,33 @@
 ---
+import { Astro } from 'astro';
+import { CartCounter } from './CartCounter';
 
+// Get current page path for active navigation
+const currentPath = Astro.url.pathname;
 ---
 
 <!-- Header -->
-<header class="bg-white shadow-sm">
+<header class="bg-white shadow-sm sticky top-0 z-50">
     <!-- Top Bar -->
     <div class="bg-blue-900 text-white py-2">
-        <div
-            class="container mx-auto px-4 flex justify-between items-center text-sm"
-        >
+        <div class="container mx-auto px-4 flex justify-between items-center text-sm">
             <div class="flex items-center space-x-4">
-                <span
-                    ><i class="fas fa-envelope mr-1"></i> ventas@toricesdigital.com</span
-                >
-                <span><i class="fas fa-phone mr-1"></i> (12345)67890</span>
+                <a href="mailto:ventas@toricesdigital.com" class="hover:text-blue-200 transition-colors">
+                    <i class="fas fa-envelope mr-1"></i> ventas@toricesdigital.com
+                </a>
+                <a href="tel:+1234567890" class="hover:text-blue-200 transition-colors">
+                    <i class="fas fa-phone mr-1"></i> (123) 456-7890
+                </a>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="#" class="hover:text-blue-200">Entrar</a>
-                <a href="#" class="hover:text-blue-200"
-                    ><i class="fas fa-heart mr-1"></i>Favoritos</a
-                >
-                <a href="#" class="hover:text-blue-200"
-                    ><i class="fas fa-shopping-cart"></i></a
-                >
+                <a href="/login" class="hover:text-blue-200 transition-colors">
+                    <i class="fas fa-user mr-1"></i> Entrar
+                </a>
+                <a href="/favoritos" class="hover:text-blue-200 transition-colors relative">
+                    <i class="fas fa-heart mr-1"></i>Favoritos
+                    <span class="favorites-counter absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center" style="display: none;">0</span>
+                </a>
+                <CartCounter client:load />
             </div>
         </div>
     </div>
@@ -31,45 +36,346 @@
     <div class="bg-white py-4">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <!-- Logo -->
-            <div class="flex items-center">
-                <div
-                    class="w-10 h-10 bg-blue-600 rounded flex items-center justify-center mr-3"
-                >
+            <a href="/" class="flex items-center group">
+                <div class="w-10 h-10 bg-blue-600 rounded flex items-center justify-center mr-3 group-hover:bg-blue-700 transition-colors">
                     <span class="text-white font-bold text-xl">T</span>
                 </div>
-                <span class="text-2xl font-bold text-blue-600"
-                    >TORICES DIGITAL</span
-                >
-            </div>
+                <span class="text-2xl font-bold text-blue-600 group-hover:text-blue-700 transition-colors">
+                    TORICES DIGITAL
+                </span>
+            </a>
 
-            <!-- Navigation Links -->
-            <nav class="hidden md:flex space-x-8">
-                <a
-                    href="#"
-                    class="text-blue-600 hover:text-blue-800 flex items-center"
-                >
-                    Home <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex space-x-8">
+                <a href="/" class={`flex items-center transition-colors ${
+                    currentPath === '/' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'
+                }`}>
+                    Inicio
                 </a>
-                <a href="#" class="text-gray-700 hover:text-blue-600"
-                    >Productos</a
-                >
-                <a href="#" class="text-gray-700 hover:text-blue-600">Blog</a>
-                <a href="#" class="text-gray-700 hover:text-blue-600">Tienda</a>
-                <a href="#" class="text-gray-700 hover:text-blue-600"
-                    >Contacto</a
-                >
+                
+                <!-- Products Dropdown -->
+                <div class="relative group">
+                    <a href="/productos" class={`flex items-center transition-colors ${
+                        currentPath.startsWith('/productos') || currentPath.startsWith('/producto') 
+                            ? 'text-blue-600 font-semibold' 
+                            : 'text-gray-700 hover:text-blue-600'
+                    }`}>
+                        Productos <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                    </a>
+                    <!-- Dropdown Menu -->
+                    <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <div class="py-2">
+                            <a href="/productos" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-th mr-2"></i> Todos los productos
+                            </a>
+                            <a href="/productos?categoria=paneles" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-square mr-2"></i> Paneles
+                            </a>
+                            <a href="/productos?categoria=laminas" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-layer-group mr-2"></i> Láminas
+                            </a>
+                            <a href="/productos?categoria=alambres" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-link mr-2"></i> Alambres
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="/blog" class={`transition-colors ${
+                    currentPath.startsWith('/blog') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'
+                }`}>
+                    Blog
+                </a>
+                <a href="/tienda" class={`transition-colors ${
+                    currentPath.startsWith('/tienda') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'
+                }`}>
+                    Tienda
+                </a>
+                <a href="/contacto" class={`transition-colors ${
+                    currentPath.startsWith('/contacto') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'
+                }`}>
+                    Contacto
+                </a>
             </nav>
 
             <!-- Search Bar -->
-            <div class="relative">
-                <input
-                    type="text"
-                    placeholder="Buscar..."
-                    class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <i class="fas fa-search absolute left-3 top-3 text-gray-400"
-                ></i>
+            <div class="hidden md:block relative flex-1 max-w-md mx-8">
+                <form action="/productos" method="GET" class="relative">
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Buscar productos..."
+                        class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        value=""
+                    />
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    <button type="submit" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-600 hover:text-blue-700">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-gray-200">
+            <div class="container mx-auto px-4 py-4">
+                <!-- Mobile Search -->
+                <div class="mb-4">
+                    <form action="/productos" method="GET" class="relative">
+                        <input
+                            type="text"
+                            name="search"
+                            placeholder="Buscar productos..."
+                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </form>
+                </div>
+
+                <!-- Mobile Navigation Links -->
+                <nav class="space-y-2">
+                    <a href="/" class={`block px-4 py-2 rounded-lg transition-colors ${
+                        currentPath === '/' ? 'bg-blue-100 text-blue-600 font-semibold' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
+                    }`}>
+                        <i class="fas fa-home mr-2"></i> Inicio
+                    </a>
+                    <a href="/productos" class={`block px-4 py-2 rounded-lg transition-colors ${
+                        currentPath.startsWith('/productos') || currentPath.startsWith('/producto') 
+                            ? 'bg-blue-100 text-blue-600 font-semibold' 
+                            : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
+                    }`}>
+                        <i class="fas fa-th mr-2"></i> Productos
+                    </a>
+                    <a href="/blog" class={`block px-4 py-2 rounded-lg transition-colors ${
+                        currentPath.startsWith('/blog') ? 'bg-blue-100 text-blue-600 font-semibold' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
+                    }`}>
+                        <i class="fas fa-blog mr-2"></i> Blog
+                    </a>
+                    <a href="/tienda" class={`block px-4 py-2 rounded-lg transition-colors ${
+                        currentPath.startsWith('/tienda') ? 'bg-blue-100 text-blue-600 font-semibold' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
+                    }`}>
+                        <i class="fas fa-store mr-2"></i> Tienda
+                    </a>
+                    <a href="/contacto" class={`block px-4 py-2 rounded-lg transition-colors ${
+                        currentPath.startsWith('/contacto') ? 'bg-blue-100 text-blue-600 font-semibold' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
+                    }`}>
+                        <i class="fas fa-envelope mr-2"></i> Contacto
+                    </a>
+                </nav>
             </div>
         </div>
     </div>
 </header>
+
+<!-- JavaScript for mobile menu and functionality -->
+<script>
+    // Inline cart functionality for immediate availability
+    class CartManager {
+        constructor() {
+            this.cartKey = 'torices_cart';
+            this.favoritesKey = 'torices_favorites';
+            this.init();
+        }
+
+        init() {
+            this.updateCounters();
+            this.bindEvents();
+        }
+
+        addToCart(productId, quantity = 1) {
+            const cart = this.getCart();
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({ id: productId, quantity });
+            }
+            
+            this.saveCart(cart);
+            this.updateCounters();
+            this.showNotification('Producto agregado al carrito', 'success');
+        }
+
+        toggleFavorite(productId) {
+            const favorites = this.getFavorites();
+            if (favorites.includes(productId)) {
+                this.removeFromFavorites(productId);
+            } else {
+                this.addToFavorites(productId);
+            }
+        }
+
+        addToFavorites(productId) {
+            const favorites = this.getFavorites();
+            if (!favorites.includes(productId)) {
+                favorites.push(productId);
+                this.saveFavorites(favorites);
+                this.updateCounters();
+                this.showNotification('Agregado a favoritos', 'success');
+            }
+        }
+
+        removeFromFavorites(productId) {
+            const favorites = this.getFavorites();
+            const filteredFavorites = favorites.filter(id => id !== productId);
+            this.saveFavorites(filteredFavorites);
+            this.updateCounters();
+            this.showNotification('Eliminado de favoritos', 'info');
+        }
+
+        getCart() {
+            try {
+                return JSON.parse(localStorage.getItem(this.cartKey)) || [];
+            } catch {
+                return [];
+            }
+        }
+
+        saveCart(cart) {
+            localStorage.setItem(this.cartKey, JSON.stringify(cart));
+        }
+
+        getFavorites() {
+            try {
+                return JSON.parse(localStorage.getItem(this.favoritesKey)) || [];
+            } catch {
+                return [];
+            }
+        }
+
+        saveFavorites(favorites) {
+            localStorage.setItem(this.favoritesKey, JSON.stringify(favorites));
+        }
+
+        getCartCount() {
+            return this.getCart().reduce((total, item) => total + item.quantity, 0);
+        }
+
+        getFavoritesCount() {
+            return this.getFavorites().length;
+        }
+
+        updateCounters() {
+            const cartCount = this.getCartCount();
+            const favoritesCount = this.getFavoritesCount();
+
+            const cartCounters = document.querySelectorAll('.cart-counter');
+            cartCounters.forEach(counter => {
+                counter.textContent = cartCount;
+                counter.style.display = cartCount > 0 ? 'flex' : 'none';
+            });
+
+            const favoritesCounters = document.querySelectorAll('.favorites-counter');
+            favoritesCounters.forEach(counter => {
+                counter.textContent = favoritesCount;
+                counter.style.display = favoritesCount > 0 ? 'flex' : 'none';
+            });
+        }
+
+        bindEvents() {
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('[data-add-to-cart]')) {
+                    e.preventDefault();
+                    const button = e.target.closest('[data-add-to-cart]');
+                    const productId = parseInt(button.dataset.productId);
+                    const quantity = parseInt(button.dataset.quantity) || 1;
+                    this.addToCart(productId, quantity);
+                }
+
+                if (e.target.closest('[data-add-to-favorites]')) {
+                    e.preventDefault();
+                    const button = e.target.closest('[data-add-to-favorites]');
+                    const productId = parseInt(button.dataset.productId);
+                    this.toggleFavorite(productId);
+                }
+            });
+        }
+
+        showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg text-white transition-all duration-300 transform translate-x-full`;
+            
+            const colors = {
+                success: 'bg-green-500',
+                error: 'bg-red-500',
+                info: 'bg-blue-500',
+                warning: 'bg-yellow-500'
+            };
+            
+            notification.className += ` ${colors[type] || colors.info}`;
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+    }
+
+    // Initialize cart manager
+    window.cartManager = new CartManager();
+</script>
+<script>
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            }
+        });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
+            mobileMenu.classList.add('hidden');
+            const icon = mobileMenuButton.querySelector('i');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        }
+    });
+
+    // Search functionality
+    const searchForms = document.querySelectorAll('form[action="/productos"]');
+    searchForms.forEach(form => {
+        form.addEventListener('submit', (e) => {
+            const searchInput = form.querySelector('input[name="search"]');
+            if (searchInput && searchInput.value.trim() === '') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+    });
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        // Update counters on page load
+        if (window.cartManager) {
+            window.cartManager.updateCounters();
+        }
+    });
+</script>

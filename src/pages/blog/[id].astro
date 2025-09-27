@@ -1,0 +1,205 @@
+---
+import Layout from "../layouts/Layout.astro";
+import blogData from "../../data/blog.json";
+
+export async function getStaticPaths() {
+    return blogData.map((post) => ({
+        params: { id: post.id.toString() },
+    }));
+}
+
+const { id } = Astro.params;
+const post = blogData.find(p => p.id.toString() === id);
+
+if (!post) {
+    return Astro.redirect('/404');
+}
+
+const relatedPosts = blogData.filter(p => 
+    p.id !== post.id && 
+    (p.category === post.category || p.tags.some(tag => post.tags.includes(tag)))
+).slice(0, 3);
+---
+
+<Layout title={`${post.title} - Blog Torices Digital`} description={post.excerpt}>
+	<!-- Main Content -->
+	<div class="container mx-auto px-4 py-8">
+		<!-- Breadcrumbs -->
+		<nav class="text-blue-600 text-sm mb-8">
+			<a href="/" class="hover:text-blue-800">Inicio</a> . 
+			<a href="/blog" class="hover:text-blue-800">Blog</a> . 
+			<span class="text-gray-500">{post.title}</span>
+		</nav>
+
+		<!-- Article Header -->
+		<div class="mb-8">
+			<div class="flex items-center space-x-4 mb-4">
+				<span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">
+					{post.category}
+				</span>
+				<span class="text-gray-500 text-sm">
+					<i class="fas fa-clock mr-1"></i>
+					{post.readTime}
+				</span>
+				<span class="text-gray-500 text-sm">
+					<i class="fas fa-calendar mr-1"></i>
+					{post.date}
+				</span>
+			</div>
+			
+			<h1 class="text-4xl font-bold text-gray-900 mb-4">{post.title}</h1>
+			
+			<div class="flex items-center space-x-4 mb-6">
+				<div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+					<i class="fas fa-user text-blue-600"></i>
+				</div>
+				<div>
+					<p class="font-semibold text-gray-900">{post.author}</p>
+					<p class="text-sm text-gray-500">{post.authorBio}</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Featured Image -->
+		<div class="mb-8">
+			<img src={post.image} alt={post.title} class="w-full h-64 md:h-96 object-cover rounded-lg shadow-sm" />
+		</div>
+
+		<!-- Article Content -->
+		<div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+			<!-- Main Content -->
+			<div class="lg:col-span-3">
+				<article class="bg-white rounded-lg shadow-sm p-8">
+					<div class="prose prose-lg max-w-none">
+						<div set:html={post.content}></div>
+					</div>
+					
+					<!-- Tags -->
+					<div class="mt-8 pt-6 border-t border-gray-200">
+						<h3 class="text-lg font-semibold text-gray-900 mb-4">Etiquetas</h3>
+						<div class="flex flex-wrap gap-2">
+							{post.tags.map((tag) => (
+								<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer">
+									#{tag}
+								</span>
+							))}
+						</div>
+					</div>
+				</article>
+			</div>
+
+			<!-- Sidebar -->
+			<div class="lg:col-span-1">
+				<!-- Author Info -->
+				<div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+					<h3 class="text-lg font-semibold text-gray-900 mb-4">Sobre el Autor</h3>
+					<div class="flex items-center space-x-3 mb-4">
+						<div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+							<i class="fas fa-user text-blue-600"></i>
+						</div>
+						<div>
+							<p class="font-semibold text-gray-900">{post.author}</p>
+							<p class="text-sm text-gray-500">Especialista en Construcción</p>
+						</div>
+					</div>
+					<p class="text-sm text-gray-600">{post.authorBio}</p>
+				</div>
+
+				<!-- Share Buttons -->
+				<div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+					<h3 class="text-lg font-semibold text-gray-900 mb-4">Compartir</h3>
+					<div class="space-y-3">
+						<button class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+							<i class="fab fa-facebook-f"></i>
+							<span>Facebook</span>
+						</button>
+						<button class="w-full bg-blue-400 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition-colors flex items-center justify-center space-x-2">
+							<i class="fab fa-twitter"></i>
+							<span>Twitter</span>
+						</button>
+						<button class="w-full bg-blue-800 text-white py-2 px-4 rounded-lg hover:bg-blue-900 transition-colors flex items-center justify-center space-x-2">
+							<i class="fab fa-linkedin-in"></i>
+							<span>LinkedIn</span>
+						</button>
+						<button class="w-full bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors flex items-center justify-center space-x-2">
+							<i class="fas fa-link"></i>
+							<span>Copiar enlace</span>
+						</button>
+					</div>
+				</div>
+
+				<!-- Newsletter -->
+				<div class="bg-blue-600 rounded-lg p-6 text-white">
+					<h3 class="text-lg font-semibold mb-4">Mantente Actualizado</h3>
+					<p class="text-blue-100 text-sm mb-4">
+						Suscríbete y recibe las últimas noticias y consejos directamente en tu correo.
+					</p>
+					<form class="space-y-3">
+						<input
+							type="email"
+							placeholder="Tu correo electrónico"
+							class="w-full px-3 py-2 rounded text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+							required
+						/>
+						<button
+							type="submit"
+							class="w-full bg-white text-blue-600 py-2 px-4 rounded text-sm font-semibold hover:bg-gray-100 transition-colors"
+						>
+							Suscribirse
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- Related Posts -->
+		{relatedPosts.length > 0 && (
+			<div class="mt-12">
+				<h2 class="text-2xl font-bold text-gray-900 mb-6">Artículos Relacionados</h2>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+					{relatedPosts.map((relatedPost) => (
+						<article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
+							<div class="relative">
+								<img src={relatedPost.image} alt={relatedPost.title} class="w-full h-48 object-cover" />
+								<div class="absolute top-4 left-4">
+									<span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+										{relatedPost.category}
+									</span>
+								</div>
+							</div>
+							<div class="p-6">
+								<div class="flex items-center space-x-4 mb-3 text-sm text-gray-500">
+									<span>
+										<i class="fas fa-user mr-1"></i>
+										{relatedPost.author}
+									</span>
+									<span>
+										<i class="fas fa-calendar mr-1"></i>
+										{relatedPost.date}
+									</span>
+								</div>
+								<h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{relatedPost.title}</h3>
+								<p class="text-gray-600 mb-4 line-clamp-3">{relatedPost.excerpt}</p>
+								<a href={`/blog/${relatedPost.id}`} class="text-blue-600 hover:text-blue-700 font-medium">
+									Leer más <i class="fas fa-arrow-right ml-1"></i>
+								</a>
+							</div>
+						</article>
+					))}
+				</div>
+			</div>
+		)}
+
+		<!-- Navigation -->
+		<div class="mt-12 flex justify-between">
+			<a href="/blog" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors flex items-center space-x-2">
+				<i class="fas fa-arrow-left"></i>
+				<span>Volver al Blog</span>
+			</a>
+			<a href="/productos" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
+				<span>Ver Productos</span>
+				<i class="fas fa-arrow-right"></i>
+			</a>
+		</div>
+	</div>
+</Layout>

@@ -1,0 +1,224 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { ProductGrid } from "../../components/ProductGrid";
+import productsData from "../../data/products.json";
+
+export async function getStaticPaths() {
+    return productsData.map((product) => ({
+        params: { id: product.id.toString() },
+    }));
+}
+
+const { id } = Astro.params;
+const product = productsData.find(p => p.id.toString() === id);
+
+if (!product) {
+    return Astro.redirect('/404');
+}
+
+const relatedProducts = productsData.filter(p => 
+    p.id !== product.id && p.category === product.category
+).slice(0, 4);
+---
+
+<Layout title={`${product.name} - Torices Digital`} description={product.description}>
+	<!-- Main Content -->
+	<div class="container mx-auto px-4 py-8">
+		<!-- Breadcrumbs -->
+		<nav class="text-blue-600 text-sm mb-8">
+			<a href="/" class="hover:text-blue-800">Inicio</a> . 
+			<a href="/productos" class="hover:text-blue-800">Productos</a> . 
+			<span class="text-gray-500">{product.name}</span>
+		</nav>
+
+		<!-- Product Details -->
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+			<!-- Product Images -->
+			<div class="space-y-4">
+				<!-- Main Image -->
+				<div class="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+					<img 
+						src={product.images.main} 
+						alt={product.name} 
+						class="w-full h-full object-cover" 
+					/>
+				</div>
+				
+				<!-- Thumbnail Images -->
+				<div class="grid grid-cols-4 gap-4">
+					{product.images.thumbnails.map((thumb, index) => (
+						<div class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-blue-500">
+							<img 
+								src={thumb} 
+								alt={`${product.name} ${index + 1}`} 
+								class="w-full h-full object-cover" 
+							/>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<!-- Product Info -->
+			<div class="space-y-6">
+				<!-- Title and Rating -->
+				<div>
+					<h1 class="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
+					<p class="text-gray-600 mb-4">SKU: {product.sku}</p>
+					
+					<div class="flex items-center space-x-4 mb-4">
+						<div class="flex text-yellow-400">
+							{Array.from({ length: product.rating }).map(() => (
+								<i class="fas fa-star"></i>
+							))}
+						</div>
+						<span class="text-gray-600">({product.reviews} reseñas)</span>
+					</div>
+				</div>
+
+				<!-- Price -->
+				<div class="space-y-2">
+					<div class="flex items-center space-x-4">
+						<span class="text-3xl font-bold text-blue-900">${product.price}</span>
+						{product.originalPrice > product.price && (
+							<span class="text-xl text-gray-500 line-through">${product.originalPrice}</span>
+						)}
+					</div>
+					{product.originalPrice > product.price && (
+						<span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-medium">
+							Ahorra ${product.originalPrice - product.price}
+						</span>
+					)}
+				</div>
+
+				<!-- Description -->
+				<div>
+					<h3 class="text-lg font-semibold text-gray-900 mb-2">Descripción</h3>
+					<p class="text-gray-600 leading-relaxed">{product.description}</p>
+				</div>
+
+				<!-- Options -->
+				{product.colors && product.colors.length > 0 && (
+					<div>
+						<h3 class="text-lg font-semibold text-gray-900 mb-3">Colores</h3>
+						<div class="flex space-x-3">
+							{product.colors.map((color) => (
+								<button 
+									class="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-500 focus:border-blue-500 focus:outline-none"
+									style={`background-color: ${color.value}`}
+									title={color.name}
+								></button>
+							))}
+						</div>
+					</div>
+				)}
+
+				{product.lengths && product.lengths.length > 0 && (
+					<div>
+						<h3 class="text-lg font-semibold text-gray-900 mb-3">Largos Disponibles</h3>
+						<div class="flex flex-wrap gap-2">
+							{product.lengths.map((length) => (
+								<button class="px-4 py-2 border border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
+									{length}
+								</button>
+							))}
+						</div>
+					</div>
+				)}
+
+				{product.thicknesses && product.thicknesses.length > 0 && (
+					<div>
+						<h3 class="text-lg font-semibold text-gray-900 mb-3">Espesores Disponibles</h3>
+						<div class="flex flex-wrap gap-2">
+							{product.thicknesses.map((thickness) => (
+								<button class="px-4 py-2 border border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
+									{thickness}
+								</button>
+							))}
+						</div>
+					</div>
+				)}
+
+				<!-- Add to Cart Buttons -->
+				<div class="space-y-4">
+					<div class="flex space-x-4">
+						<button class="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold flex items-center justify-center space-x-2">
+							<i class="fas fa-shopping-cart"></i>
+							<span>Agregar al Carrito</span>
+						</button>
+						<button class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
+							<i class="fas fa-heart"></i>
+						</button>
+					</div>
+					
+					<button class="w-full bg-gray-600 text-white py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors font-semibold flex items-center justify-center space-x-2">
+						<i class="fas fa-phone"></i>
+						<span>Cotizar por Teléfono</span>
+					</button>
+				</div>
+
+				<!-- Product Features -->
+				<div class="bg-gray-50 rounded-lg p-6">
+					<h3 class="text-lg font-semibold text-gray-900 mb-4">Características del Producto</h3>
+					<div class="space-y-2 text-sm">
+						<div class="flex justify-between">
+							<span class="text-gray-600">Categoría:</span>
+							<span class="font-medium">{product.category}</span>
+						</div>
+						<div class="flex justify-between">
+							<span class="text-gray-600">Material:</span>
+							<span class="font-medium">{product.details.material}</span>
+						</div>
+						<div class="flex justify-between">
+							<span class="text-gray-600">Espesor:</span>
+							<span class="font-medium">{product.details.espesor}</span>
+						</div>
+						<div class="flex justify-between">
+							<span class="text-gray-600">Ancho:</span>
+							<span class="font-medium">{product.details.ancho}</span>
+						</div>
+						<div class="flex justify-between">
+							<span class="text-gray-600">Largo:</span>
+							<span class="font-medium">{product.details.largo}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Product Tabs -->
+		<div class="bg-white rounded-lg shadow-sm mb-16">
+			<div class="border-b border-gray-200">
+				<nav class="flex space-x-8 px-6">
+					<button class="py-4 px-1 border-b-2 border-blue-500 text-blue-600 font-medium">
+						Descripción
+					</button>
+					<button class="py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+						Especificaciones
+					</button>
+					<button class="py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+						Reseñas ({product.reviews})
+					</button>
+				</nav>
+			</div>
+			<div class="p-6">
+				<div class="prose max-w-none">
+					<p class="text-gray-600 leading-relaxed">
+						{product.description}
+					</p>
+					<p class="text-gray-600 leading-relaxed mt-4">
+						Este producto está diseñado para ofrecer la máxima durabilidad y resistencia en aplicaciones de construcción. 
+						Fabricado con los más altos estándares de calidad, garantiza un rendimiento excepcional en cualquier proyecto.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Related Products -->
+		{relatedProducts.length > 0 && (
+			<div>
+				<h2 class="text-2xl font-bold text-gray-900 mb-6">Productos Relacionados</h2>
+				<ProductGrid products={relatedProducts} client:load />
+			</div>
+		)}
+	</div>
+</Layout>

@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1,
+    "title": "Guía Completa para Elegir el Material de Construcción Ideal",
+    "excerpt": "Descubre los factores clave para seleccionar los mejores materiales de construcción según tu proyecto y presupuesto.",
+    "content": "<p>Elegir los materiales de construcción adecuados es fundamental para el éxito de cualquier proyecto. En esta guía completa, te ayudaremos a tomar las mejores decisiones basadas en tus necesidades específicas, presupuesto y objetivos a largo plazo.</p><h2>Factores Clave a Considerar</h2><h3>1. Durabilidad y Resistencia</h3><p>La durabilidad es uno de los aspectos más importantes al seleccionar materiales de construcción. Considera factores como:</p><ul><li>Resistencia a la intemperie</li><li>Capacidad de carga</li><li>Resistencia a la corrosión</li><li>Vida útil esperada</li></ul><h3>2. Costo-Beneficio</h3><p>No siempre el material más barato es la mejor opción. Evalúa:</p><ul><li>Costo inicial vs. mantenimiento a largo plazo</li><li>Eficiencia energética</li><li>Valor de reventa</li><li>Disponibilidad y facilidad de instalación</li></ul><h3>3. Sostenibilidad</h3><p>En la era actual, la sostenibilidad es crucial. Busca materiales que:</p><ul><li>Sean reciclables o reutilizables</li><li>Tengan certificaciones ambientales</li><li>Reduzcan el consumo energético</li><li>Minimicen el impacto ambiental</li></ul><h2>Materiales Recomendados por Categoría</h2><h3>Estructura Principal</h3><p>Para la estructura principal de tu construcción, considera:</p><ul><li><strong>Acero galvanizado:</strong> Excelente para estructuras que requieren alta resistencia</li><li><strong>Concreto:</strong> Ideal para cimientos y estructuras de soporte</li><li><strong>Madera tratada:</strong> Perfecta para estructuras residenciales</li></ul><h3>Cubiertas y Techos</h3><p>Para proteger tu construcción de los elementos:</p><ul><li><strong>Láminas de acero:</strong> Duraderas y resistentes a la intemperie</li><li><strong>Poliacryl:</strong> Excelente para techos que requieren transparencia</li><li><strong>Paneles metálicos:</strong> Ideales para construcciones industriales</li></ul><h2>Consejos Prácticos</h2><p>Antes de tomar tu decisión final:</p><ol><li>Consulta con profesionales del sector</li><li>Solicita muestras de materiales</li><li>Revisa las garantías ofrecidas</li><li>Considera el clima de tu región</li><li>Evalúa los costos de instalación y mantenimiento</li></ol><p>En Torices Digital, contamos con una amplia gama de materiales de construcción de la más alta calidad. Nuestro equipo de expertos está disponible para asesorarte en la selección de los materiales ideales para tu proyecto.</p>",
+    "author": "Equipo Torices",
+    "date": "2024-01-15",
+    "readTime": "5 min",
+    "image": "/img/blog-placeholder-1.jpg",
+    "category": "Construcción",
+    "featured": true,
+    "tags": ["construcción", "materiales", "guía", "durabilidad"]
+  },
+  {
+    "id": 2,
+    "title": "Tendencias en Construcción Sostenible 2024",
+    "excerpt": "Explora las últimas tendencias en construcción ecológica y materiales amigables con el medio ambiente.",
+    "content": "<p>La construcción sostenible se ha convertido en una prioridad en la industria. En 2024, vemos nuevas tendencias que están revolucionando la forma en que construimos.</p><h2>Materiales Eco-Friendly</h2><p>Los materiales sostenibles están ganando terreno en el mercado de la construcción.</p><h2>Tecnología Verde</h2><p>La tecnología está jugando un papel crucial en la construcción sostenible.</p>",
+    "author": "María González",
+    "date": "2024-01-10",
+    "readTime": "7 min",
+    "image": "/img/blog-placeholder-2.jpg",
+    "category": "Sostenibilidad",
+    "featured": false,
+    "tags": ["sostenibilidad", "ecología", "tendencias", "2024"]
+  },
+  {
+    "id": 3,
+    "title": "Cómo Mantener tus Láminas de Acero en Perfecto Estado",
+    "excerpt": "Consejos prácticos para el mantenimiento y cuidado de láminas de acero galvanizado.",
+    "content": "<p>El mantenimiento adecuado de las láminas de acero es esencial para prolongar su vida útil y mantener su apariencia.</p><h2>Limpieza Regular</h2><p>La limpieza es fundamental para mantener las láminas en buen estado.</p><h2>Inspección Periódica</h2><p>Realiza inspecciones regulares para detectar problemas a tiempo.</p>",
+    "author": "Carlos Rodríguez",
+    "date": "2024-01-05",
+    "readTime": "4 min",
+    "image": "/img/blog-placeholder-3.jpg",
+    "category": "Mantenimiento",
+    "featured": false,
+    "tags": ["mantenimiento", "láminas", "acero", "cuidado"]
+  },
+  {
+    "id": 4,
+    "title": "Proyectos DIY con Materiales de Construcción",
+    "excerpt": "Ideas creativas para proyectos de bricolaje usando materiales de construcción profesionales.",
+    "content": "<p>Los materiales de construcción no solo son para grandes proyectos. También puedes usarlos para proyectos DIY increíbles.</p><h2>Ideas de Proyectos</h2><p>Descubre proyectos creativos que puedes hacer en casa.</p><h2>Herramientas Necesarias</h2><p>Las herramientas básicas que necesitas para empezar.</p>",
+    "author": "Ana Martínez",
+    "date": "2023-12-28",
+    "readTime": "6 min",
+    "image": "/img/blog-placeholder-4.jpg",
+    "category": "DIY",
+    "featured": false,
+    "tags": ["diy", "proyectos", "creatividad", "bricolaje"]
+  },
+  {
+    "id": 5,
+    "title": "La Importancia de la Calidad en los Materiales de Construcción",
+    "excerpt": "Por qué invertir en materiales de alta calidad es fundamental para la durabilidad de tu proyecto.",
+    "content": "<p>La calidad de los materiales de construcción es un factor determinante en el éxito de cualquier proyecto.</p><h2>Beneficios de la Calidad</h2><p>Invertir en materiales de calidad tiene múltiples beneficios.</p><h2>Identificando Materiales de Calidad</h2><p>Cómo reconocer materiales de construcción de alta calidad.</p>",
+    "author": "Equipo Torices",
+    "date": "2023-12-20",
+    "readTime": "8 min",
+    "image": "/img/blog-placeholder-5.jpg",
+    "category": "Calidad",
+    "featured": false,
+    "tags": ["calidad", "durabilidad", "inversión", "materiales"]
+  }
+]

@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Página no encontrada - Torices Digital" description="La página que buscas no existe">
+	<!-- Main Content -->
+	<div class="container mx-auto px-4 py-16">
+		<div class="text-center">
+			<!-- 404 Illustration -->
+			<div class="mb-8">
+				<div class="w-64 h-64 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-8">
+					<i class="fas fa-search text-blue-600 text-8xl"></i>
+				</div>
+			</div>
+
+			<!-- Error Message -->
+			<h1 class="text-6xl font-bold text-blue-900 mb-4">404</h1>
+			<h2 class="text-3xl font-bold text-gray-900 mb-4">Página no encontrada</h2>
+			<p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+				Lo sentimos, la página que estás buscando no existe o ha sido movida. 
+				Pero no te preocupes, tenemos muchas otras cosas interesantes para ti.
+			</p>
+
+			<!-- Action Buttons -->
+			<div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+				<a href="/" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+					<i class="fas fa-home mr-2"></i>
+					Ir al Inicio
+				</a>
+				<a href="/productos" class="bg-white text-blue-600 border border-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+					<i class="fas fa-box mr-2"></i>
+					Ver Productos
+				</a>
+				<a href="/contacto" class="bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors">
+					<i class="fas fa-envelope mr-2"></i>
+					Contactar Soporte
+				</a>
+			</div>
+
+			<!-- Popular Links -->
+			<div class="bg-white rounded-lg shadow-sm p-8 max-w-4xl mx-auto">
+				<h3 class="text-2xl font-bold text-gray-900 mb-6">Enlaces Populares</h3>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+					<a href="/productos" class="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition-all">
+						<div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-blue-200 transition-colors">
+							<i class="fas fa-box text-blue-600 text-xl"></i>
+						</div>
+						<h4 class="font-semibold text-gray-900 mb-1">Productos</h4>
+						<p class="text-sm text-gray-600">Ver catálogo completo</p>
+					</a>
+					
+					<a href="/tienda" class="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition-all">
+						<div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-green-200 transition-colors">
+							<i class="fas fa-store text-green-600 text-xl"></i>
+						</div>
+						<h4 class="font-semibold text-gray-900 mb-1">Tienda</h4>
+						<p class="text-sm text-gray-600">Nuestra tienda online</p>
+					</a>
+					
+					<a href="/blog" class="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition-all">
+						<div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-purple-200 transition-colors">
+							<i class="fas fa-blog text-purple-600 text-xl"></i>
+						</div>
+						<h4 class="font-semibold text-gray-900 mb-1">Blog</h4>
+						<p class="text-sm text-gray-600">Consejos y guías</p>
+					</a>
+					
+					<a href="/contacto" class="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition-all">
+						<div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-orange-200 transition-colors">
+							<i class="fas fa-phone text-orange-600 text-xl"></i>
+						</div>
+						<h4 class="font-semibold text-gray-900 mb-1">Contacto</h4>
+						<p class="text-sm text-gray-600">Estamos aquí para ayudarte</p>
+					</a>
+				</div>
+			</div>
+
+			<!-- Search Box -->
+			<div class="mt-12 max-w-md mx-auto">
+				<h3 class="text-xl font-bold text-gray-900 mb-4">¿Buscas algo específico?</h3>
+				<div class="relative">
+					<input
+						type="text"
+						placeholder="Buscar productos, artículos..."
+						class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+					/>
+					<i class="fas fa-search absolute left-3 top-4 text-gray-400"></i>
+					<button class="absolute right-2 top-2 bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition-colors">
+						Buscar
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>

@@ -1,0 +1,93 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { ProductGrid } from "../components/ProductGrid";
+import productsData from "../data/products.json";
+
+const products = productsData;
+const categories = ["Todos", "Paneles", "Láminas", "Alambres"];
+const sortOptions = [
+    { value: "name-asc", label: "Nombre A-Z" },
+    { value: "name-desc", label: "Nombre Z-A" },
+    { value: "price-asc", label: "Precio: Menor a Mayor" },
+    { value: "price-desc", label: "Precio: Mayor a Menor" },
+    { value: "rating", label: "Mejor calificados" }
+];
+---
+
+<Layout title="Productos - Torices Digital" description="Descubre nuestra amplia gama de productos de construcción de alta calidad">
+	<!-- Main Content -->
+	<div class="container mx-auto px-4 py-8">
+		<!-- Page Header -->
+		<div class="mb-8">
+			<h1 class="text-3xl font-bold text-blue-900 mb-4">Nuestros Productos</h1>
+			<p class="text-gray-600 text-lg">Descubre nuestra amplia gama de productos de construcción de alta calidad</p>
+		</div>
+
+		<!-- Filters and Search -->
+		<div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+			<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+				<!-- Search -->
+				<div class="md:col-span-2">
+					<div class="relative">
+						<input
+							type="text"
+							placeholder="Buscar productos..."
+							class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+						/>
+						<i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+					</div>
+				</div>
+				
+				<!-- Category Filter -->
+				<div>
+					<select class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+						{categories.map((category) => (
+							<option>{category}</option>
+						))}
+					</select>
+				</div>
+				
+				<!-- Sort -->
+				<div>
+					<select class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+						{sortOptions.map((option) => (
+							<option value={option.value}>{option.label}</option>
+						))}
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<!-- Products Grid -->
+		<div class="bg-white rounded-lg shadow-sm p-8">
+			<div class="flex justify-between items-center mb-6">
+				<h2 class="text-xl font-semibold text-gray-900">
+					Mostrando {products.length} productos
+				</h2>
+				<div class="flex items-center space-x-2">
+					<span class="text-sm text-gray-600">Vista:</span>
+					<button class="p-2 bg-blue-100 text-blue-600 rounded">
+						<i class="fas fa-th"></i>
+					</button>
+					<button class="p-2 text-gray-400 hover:text-blue-600 rounded">
+						<i class="fas fa-list"></i>
+					</button>
+				</div>
+			</div>
+
+			<!-- React Product Grid -->
+			<ProductGrid products={products} showDescription={true} client:load />
+		</div>
+
+		<!-- Pagination -->
+		<div class="mt-8 flex justify-center">
+			<nav class="flex items-center space-x-2">
+				<button class="px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
+					<i class="fas fa-chevron-left"></i>
+				</button>
+				<button class="px-3 py-2 bg-blue-600 text-white rounded-lg">1</button>
+				
+			</nav>
+		</div>
+	</div>
+</Layout>
