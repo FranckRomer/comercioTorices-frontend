@@ -13,5 +13,23 @@ export default defineConfig({
 	server: {
 		host: true, // Escuchar en todas las interfaces de red
 		port: 3012,
-	}
+	},
+	build: {
+		// Optimizaciones para reducir uso de memoria
+		inlineStylesheets: 'auto',
+		assets: '_assets',
+	},
+	vite: {
+		build: {
+			// Configuración de Vite para optimizar memoria
+			chunkSizeWarningLimit: 1000,
+			rollupOptions: {
+				output: {
+					manualChunks: {
+						vendor: ['react', 'react-dom'],
+					},
+				},
+			},
+		},
+	},
 });
