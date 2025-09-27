@@ -8,7 +8,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
+	site: 'https://comercio-torices.vercel.app',
 	integrations: [mdx(), sitemap(), react(), tailwind()],
 	server: {
 		host: true, // Escuchar en todas las interfaces de red
