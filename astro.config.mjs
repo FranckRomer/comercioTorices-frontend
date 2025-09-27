@@ -12,6 +12,6 @@ export default defineConfig({
 	integrations: [mdx(), sitemap(), react(), tailwind()],
 	server: {
 		host: true, // Escuchar en todas las interfaces de red
-		port: 4321
+		port: 3012,
 	}
 });
