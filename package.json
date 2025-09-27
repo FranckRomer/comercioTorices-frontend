@@ -9,7 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^2.0.0",
+    "@astrojs/mdx": "^1.0.0",
     "@astrojs/react": "^2.0.0",
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^2.0.0",

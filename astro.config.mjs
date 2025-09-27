@@ -10,4 +10,8 @@ import react from '@astrojs/react';
 export default defineConfig({
 	site: 'https://example.com',
 	integrations: [mdx(), sitemap(), react(), tailwind()],
+	server: {
+		host: true, // Escuchar en todas las interfaces de red
+		port: 4321
+	}
 });
