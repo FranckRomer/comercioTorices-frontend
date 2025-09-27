@@ -1,0 +1,256 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Carrito de Compras - Torices Digital</title>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+	</head>
+	<body class="bg-gray-50">
+		<Header />
+
+		<!-- Main Content -->
+		<main class="container mx-auto px-4 py-8">
+			<!-- Page Title and Breadcrumbs -->
+			<div class="mb-8">
+				<h1 class="text-4xl font-bold text-blue-900 mb-4">Carrito de compras</h1>
+				<nav class="text-blue-600 text-sm">
+					<a href="#" class="hover:text-blue-800">Inicio</a> . 
+					<span class="text-orange-500">Carrito de compras</span>
+				</nav>
+			</div>
+
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+				<!-- Shopping Cart Table -->
+				<div class="lg:col-span-2">
+					<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+						<!-- Table Header -->
+						<div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+							<div class="grid grid-cols-12 gap-4 text-sm font-semibold text-purple-900">
+								<div class="col-span-5">Producto</div>
+								<div class="col-span-2 text-center">Precio</div>
+								<div class="col-span-2 text-center">Cantidad</div>
+								<div class="col-span-2 text-center">Total</div>
+								<div class="col-span-1"></div>
+							</div>
+						</div>
+
+						<!-- Product Rows -->
+						<div class="divide-y divide-gray-200">
+							<!-- Product 1: Lámina Poliacryl -->
+							<div class="p-6">
+								<div class="grid grid-cols-12 gap-4 items-center">
+									<!-- Product Image and Info -->
+									<div class="col-span-5 flex items-center space-x-4">
+										<div class="relative">
+											<div class="w-20 h-20 bg-yellow-200 rounded overflow-hidden">
+												<img src="/public/img/lamina-amarilla.png" alt="Lámina Poliacryl" class="w-full h-full object-cover" />
+											</div>
+											<button class="absolute -top-2 -left-2 w-6 h-6 bg-black rounded-full flex items-center justify-center text-white text-xs hover:bg-gray-800">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+										<div>
+											<h3 class="font-semibold text-gray-900">Lámina Poliacryl</h3>
+											<div class="text-sm text-gray-600 space-y-1">
+												<p>Color: Amarillo</p>
+												<p>Largo: 1m</p>
+												<p>Espesor: 1m</p>
+											</div>
+										</div>
+									</div>
+
+									<!-- Price -->
+									<div class="col-span-2 text-center">
+										<span class="text-lg font-semibold text-gray-900">$32.00</span>
+									</div>
+
+									<!-- Quantity -->
+									<div class="col-span-2 flex justify-center">
+										<div class="flex items-center border border-gray-300 rounded">
+											<button class="px-3 py-1 hover:bg-gray-100">
+												<i class="fas fa-minus text-gray-600"></i>
+											</button>
+											<span class="px-4 py-1 border-x border-gray-300 min-w-[3rem] text-center">5</span>
+											<button class="px-3 py-1 hover:bg-gray-100">
+												<i class="fas fa-plus text-gray-600"></i>
+											</button>
+										</div>
+									</div>
+
+									<!-- Total -->
+									<div class="col-span-2 text-center">
+										<span class="text-lg font-bold text-blue-900">$160.00</span>
+									</div>
+
+									<!-- Remove Button -->
+									<div class="col-span-1 text-center">
+										<button class="text-red-500 hover:text-red-700">
+											<i class="fas fa-trash"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+
+							<!-- Product 2: Alambre Galvanizado -->
+							<div class="p-6">
+								<div class="grid grid-cols-12 gap-4 items-center">
+									<!-- Product Image and Info -->
+									<div class="col-span-5 flex items-center space-x-4">
+										<div class="relative">
+											<div class="w-20 h-20 bg-gray-300 rounded overflow-hidden">
+												<img src="/public/img/Alambre Galvanizado.png" alt="Alambre Galvanizado" class="w-full h-full object-cover" />
+											</div>
+											<button class="absolute -top-2 -left-2 w-6 h-6 bg-black rounded-full flex items-center justify-center text-white text-xs hover:bg-gray-800">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+										<div>
+											<h3 class="font-semibold text-gray-900">Alambre Galvanizado</h3>
+											<div class="text-sm text-gray-600 space-y-1">
+												<p>Color: Amarillo</p>
+												<p>Largo: 1m</p>
+												<p>Espesor: 1m</p>
+											</div>
+										</div>
+									</div>
+
+									<!-- Price -->
+									<div class="col-span-2 text-center">
+										<span class="text-lg font-semibold text-gray-900">$42.00</span>
+									</div>
+
+									<!-- Quantity -->
+									<div class="col-span-2 flex justify-center">
+										<div class="flex items-center border border-gray-300 rounded">
+											<button class="px-3 py-1 hover:bg-gray-100">
+												<i class="fas fa-minus text-gray-600"></i>
+											</button>
+											<span class="px-4 py-1 border-x border-gray-300 min-w-[3rem] text-center">2</span>
+											<button class="px-3 py-1 hover:bg-gray-100">
+												<i class="fas fa-plus text-gray-600"></i>
+											</button>
+										</div>
+									</div>
+
+									<!-- Total -->
+									<div class="col-span-2 text-center">
+										<span class="text-lg font-bold text-blue-900">$84.00</span>
+									</div>
+
+									<!-- Remove Button -->
+									<div class="col-span-1 text-center">
+										<button class="text-red-500 hover:text-red-700">
+											<i class="fas fa-trash"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+
+							<!-- Product 3: Lámina Tablero -->
+							<div class="p-6">
+								<div class="grid grid-cols-12 gap-4 items-center">
+									<!-- Product Image and Info -->
+									<div class="col-span-5 flex items-center space-x-4">
+										<div class="relative">
+											<div class="w-20 h-20 bg-green-200 rounded overflow-hidden">
+												<img src="/public/img/Lamina Tablero.png" alt="Lámina Tablero" class="w-full h-full object-cover" />
+											</div>
+											<button class="absolute -top-2 -left-2 w-6 h-6 bg-black rounded-full flex items-center justify-center text-white text-xs hover:bg-gray-800">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+										<div>
+											<h3 class="font-semibold text-gray-900">Lámina Tablero</h3>
+											<div class="text-sm text-gray-600 space-y-1">
+												<p>Color: Amarillo</p>
+												<p>Largo: 1m</p>
+												<p>Espesor: 1m</p>
+											</div>
+										</div>
+									</div>
+
+									<!-- Price -->
+									<div class="col-span-2 text-center">
+										<span class="text-lg font-semibold text-gray-900">$32.00</span>
+									</div>
+
+									<!-- Quantity -->
+									<div class="col-span-2 flex justify-center">
+										<div class="flex items-center border border-gray-300 rounded">
+											<button class="px-3 py-1 hover:bg-gray-100">
+												<i class="fas fa-minus text-gray-600"></i>
+											</button>
+											<span class="px-4 py-1 border-x border-gray-300 min-w-[3rem] text-center">1</span>
+											<button class="px-3 py-1 hover:bg-gray-100">
+												<i class="fas fa-plus text-gray-600"></i>
+											</button>
+										</div>
+									</div>
+
+									<!-- Total -->
+									<div class="col-span-2 text-center">
+										<span class="text-lg font-bold text-blue-900">$32.00</span>
+									</div>
+
+									<!-- Remove Button -->
+									<div class="col-span-1 text-center">
+										<button class="text-red-500 hover:text-red-700">
+											<i class="fas fa-trash"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Action Buttons -->
+						<div class="px-6 py-4 bg-gray-50 flex justify-between">
+							<button class="bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 transition-colors">
+								Actualizar carrito
+							</button>
+							<button class="bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 transition-colors">
+								Limpiar carrito
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Order Totals -->
+				<div class="lg:col-span-1">
+					<div class="bg-purple-50 rounded-lg shadow-sm p-6 sticky top-4">
+						<h2 class="text-xl font-bold text-purple-900 mb-6">Totales</h2>
+						
+						<div class="space-y-4">
+							<div class="flex justify-between text-lg">
+								<span class="text-gray-600">Subtotal:</span>
+								<span class="font-semibold text-gray-900">$219.00</span>
+							</div>
+							
+							<div class="flex justify-between text-lg">
+								<span class="text-gray-600">Totals:</span>
+								<span class="font-bold text-blue-900">$325.00</span>
+							</div>
+
+							<div class="flex items-center text-sm text-gray-600 mt-4">
+								<i class="fas fa-check-circle text-green-500 mr-2"></i>
+								<span>Envío e impuestos calculados al finalizar la compra</span>
+							</div>
+
+							<button class="w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition-colors font-semibold mt-6">
+								Proceder al pago
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<Footer />
+	</body>
+</html>
